@@ -20,4 +20,4 @@ SELECT
 FROM
 	chirps
 WHERE
-	chirps.id = $1
+	chirps.id = $1;
