@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -23,8 +24,11 @@ func main() {
 	mux.HandleFunc("GET /api/chirps/{chirpID}", cfg.handlerChirpsGet)
 
 	server := &http.Server{
-		Addr:    ":" + cfg.port,
-		Handler: mux,
+		Addr:         ":" + cfg.port,
+		Handler:      mux,
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 30 * time.Second,
 	}
 
 	log.Printf("Server is running at http://localhost:%s\n", cfg.port)
