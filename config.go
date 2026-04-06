@@ -16,6 +16,7 @@ type config struct {
 	filepathRoot   string
 	platform       string
 	port           string
+	jwtSecret      string
 }
 
 func mustEnv(key string) string {
@@ -42,5 +43,6 @@ func defineConfig() *config {
 		filepathRoot:   mustEnv("FILEPATH_ROOT"),
 		port:           mustEnv("PORT"),
 		platform:       mustEnv("PLATFORM"),
+		jwtSecret:      mustEnv("JWT_SECRET"),
 	}
 }
